@@ -30,3 +30,31 @@ export interface GenerationRequest {
   profile: UserProfile;
   num_ideas: number;
 }
+
+export type FeedbackRating = "up" | "down" | null;
+
+export type FeedbackReason =
+  | "wrong_tech_stack"
+  | "too_expensive"
+  | "too_difficult"
+  | "not_interesting"
+  | "other";
+
+export interface IdeaFeedback {
+  rating: FeedbackRating;
+  reason?: FeedbackReason;
+}
+
+export interface IdeaWithFeedback extends GeneratedIdea {
+  id: string;
+  feedback?: IdeaFeedback;
+  skillMatch?: SkillMatch;
+}
+
+export interface SkillMatch {
+  matchedCount: number;
+  totalCount: number;
+  percentage: number;
+  matchedSkills: string[];
+}
+
